@@ -471,6 +471,7 @@ compiler_rcc_clean:
 	-$(DEL_FILE) qrc_qml.cpp
 qrc_qml.cpp: qml.qrc \
 		main.qml \
+		base/DisplayArea.qml \
 		base/InputArea.qml
 	/home/stephen/Qt5.3.1/5.3/gcc/bin/rcc -name qml qml.qrc -o qrc_qml.cpp
 
@@ -707,9 +708,10 @@ moc_translate.cpp: ../../Qt5.3.1/5.3/gcc/include/QtCore/QObject \
 		../../Qt5.3.1/5.3/gcc/include/QtNetwork/qsslkey.h \
 		../../Qt5.3.1/5.3/gcc/include/QtNetwork/qtnetworkversion.h \
 		../../Qt5.3.1/5.3/gcc/include/QtCore/QDebug \
-		../../Qt5.3.1/5.3/gcc/include/QtCore/QJsonDocument \
-		../../Qt5.3.1/5.3/gcc/include/QtCore/QJsonArray \
 		baiduapidictresult.h \
+		../../Qt5.3.1/5.3/gcc/include/QtCore/QJsonDocument \
+		../../Qt5.3.1/5.3/gcc/include/QtCore/QJsonObject \
+		../../Qt5.3.1/5.3/gcc/include/QtCore/QJsonArray \
 		translate.h
 	/home/stephen/Qt5.3.1/5.3/gcc/bin/moc $(DEFINES) -I/home/stephen/Qt5.3.1/5.3/gcc/mkspecs/linux-g++ -I/home/stephen/project/openTranslate -I/home/stephen/Qt5.3.1/5.3/gcc/include -I/home/stephen/Qt5.3.1/5.3/gcc/include/QtQuick -I/home/stephen/Qt5.3.1/5.3/gcc/include/QtQml -I/home/stephen/Qt5.3.1/5.3/gcc/include/QtWidgets -I/home/stephen/Qt5.3.1/5.3/gcc/include/QtNetwork -I/home/stephen/Qt5.3.1/5.3/gcc/include/QtGui -I/home/stephen/Qt5.3.1/5.3/gcc/include/QtCore translate.h -o moc_translate.cpp
 
@@ -762,6 +764,32 @@ moc_baiduapidictresult.cpp: ../../Qt5.3.1/5.3/gcc/include/QtCore/QObject \
 		../../Qt5.3.1/5.3/gcc/include/QtCore/qcontainerfwd.h \
 		../../Qt5.3.1/5.3/gcc/include/QtCore/qisenum.h \
 		../../Qt5.3.1/5.3/gcc/include/QtCore/qobject_impl.h \
+		../../Qt5.3.1/5.3/gcc/include/QtCore/QStringList \
+		../../Qt5.3.1/5.3/gcc/include/QtCore/qstringlist.h \
+		../../Qt5.3.1/5.3/gcc/include/QtCore/qdatastream.h \
+		../../Qt5.3.1/5.3/gcc/include/QtCore/qiodevice.h \
+		../../Qt5.3.1/5.3/gcc/include/QtCore/qpair.h \
+		../../Qt5.3.1/5.3/gcc/include/QtCore/qregexp.h \
+		../../Qt5.3.1/5.3/gcc/include/QtCore/qstringmatcher.h \
+		../../Qt5.3.1/5.3/gcc/include/QtCore/QJsonDocument \
+		../../Qt5.3.1/5.3/gcc/include/QtCore/qjsondocument.h \
+		../../Qt5.3.1/5.3/gcc/include/QtCore/qjsonvalue.h \
+		../../Qt5.3.1/5.3/gcc/include/QtCore/QJsonObject \
+		../../Qt5.3.1/5.3/gcc/include/QtCore/qjsonobject.h \
+		../../Qt5.3.1/5.3/gcc/include/QtCore/QJsonArray \
+		../../Qt5.3.1/5.3/gcc/include/QtCore/qjsonarray.h \
+		../../Qt5.3.1/5.3/gcc/include/QtCore/QDebug \
+		../../Qt5.3.1/5.3/gcc/include/QtCore/qdebug.h \
+		../../Qt5.3.1/5.3/gcc/include/QtCore/qhash.h \
+		../../Qt5.3.1/5.3/gcc/include/QtCore/qmap.h \
+		../../Qt5.3.1/5.3/gcc/include/QtCore/qtextstream.h \
+		../../Qt5.3.1/5.3/gcc/include/QtCore/qlocale.h \
+		../../Qt5.3.1/5.3/gcc/include/QtCore/qvariant.h \
+		../../Qt5.3.1/5.3/gcc/include/QtCore/qshareddata.h \
+		../../Qt5.3.1/5.3/gcc/include/QtCore/qvector.h \
+		../../Qt5.3.1/5.3/gcc/include/QtCore/qpoint.h \
+		../../Qt5.3.1/5.3/gcc/include/QtCore/qset.h \
+		../../Qt5.3.1/5.3/gcc/include/QtCore/qcontiguouscache.h \
 		baiduapidictresult.h
 	/home/stephen/Qt5.3.1/5.3/gcc/bin/moc $(DEFINES) -I/home/stephen/Qt5.3.1/5.3/gcc/mkspecs/linux-g++ -I/home/stephen/project/openTranslate -I/home/stephen/Qt5.3.1/5.3/gcc/include -I/home/stephen/Qt5.3.1/5.3/gcc/include/QtQuick -I/home/stephen/Qt5.3.1/5.3/gcc/include/QtQml -I/home/stephen/Qt5.3.1/5.3/gcc/include/QtWidgets -I/home/stephen/Qt5.3.1/5.3/gcc/include/QtNetwork -I/home/stephen/Qt5.3.1/5.3/gcc/include/QtGui -I/home/stephen/Qt5.3.1/5.3/gcc/include/QtCore baiduapidictresult.h -o moc_baiduapidictresult.cpp
 
@@ -1055,9 +1083,11 @@ main.o: main.cpp ../../Qt5.3.1/5.3/gcc/include/QtWidgets/QApplication \
 		../../Qt5.3.1/5.3/gcc/include/QtNetwork/qsslkey.h \
 		../../Qt5.3.1/5.3/gcc/include/QtNetwork/qtnetworkversion.h \
 		../../Qt5.3.1/5.3/gcc/include/QtCore/QDebug \
+		baiduapidictresult.h \
 		../../Qt5.3.1/5.3/gcc/include/QtCore/QJsonDocument \
+		../../Qt5.3.1/5.3/gcc/include/QtCore/QJsonObject \
 		../../Qt5.3.1/5.3/gcc/include/QtCore/QJsonArray \
-		baiduapidictresult.h
+		global.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o main.o main.cpp
 
 translate.o: translate.cpp translate.h \
@@ -1291,9 +1321,10 @@ translate.o: translate.cpp translate.h \
 		../../Qt5.3.1/5.3/gcc/include/QtNetwork/qsslkey.h \
 		../../Qt5.3.1/5.3/gcc/include/QtNetwork/qtnetworkversion.h \
 		../../Qt5.3.1/5.3/gcc/include/QtCore/QDebug \
-		../../Qt5.3.1/5.3/gcc/include/QtCore/QJsonDocument \
-		../../Qt5.3.1/5.3/gcc/include/QtCore/QJsonArray \
 		baiduapidictresult.h \
+		../../Qt5.3.1/5.3/gcc/include/QtCore/QJsonDocument \
+		../../Qt5.3.1/5.3/gcc/include/QtCore/QJsonObject \
+		../../Qt5.3.1/5.3/gcc/include/QtCore/QJsonArray \
 		global.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o translate.o translate.cpp
 
@@ -1346,7 +1377,33 @@ baiduapidictresult.o: baiduapidictresult.cpp baiduapidictresult.h \
 		../../Qt5.3.1/5.3/gcc/include/QtCore/qvarlengtharray.h \
 		../../Qt5.3.1/5.3/gcc/include/QtCore/qcontainerfwd.h \
 		../../Qt5.3.1/5.3/gcc/include/QtCore/qisenum.h \
-		../../Qt5.3.1/5.3/gcc/include/QtCore/qobject_impl.h
+		../../Qt5.3.1/5.3/gcc/include/QtCore/qobject_impl.h \
+		../../Qt5.3.1/5.3/gcc/include/QtCore/QStringList \
+		../../Qt5.3.1/5.3/gcc/include/QtCore/qstringlist.h \
+		../../Qt5.3.1/5.3/gcc/include/QtCore/qdatastream.h \
+		../../Qt5.3.1/5.3/gcc/include/QtCore/qiodevice.h \
+		../../Qt5.3.1/5.3/gcc/include/QtCore/qpair.h \
+		../../Qt5.3.1/5.3/gcc/include/QtCore/qregexp.h \
+		../../Qt5.3.1/5.3/gcc/include/QtCore/qstringmatcher.h \
+		../../Qt5.3.1/5.3/gcc/include/QtCore/QJsonDocument \
+		../../Qt5.3.1/5.3/gcc/include/QtCore/qjsondocument.h \
+		../../Qt5.3.1/5.3/gcc/include/QtCore/qjsonvalue.h \
+		../../Qt5.3.1/5.3/gcc/include/QtCore/QJsonObject \
+		../../Qt5.3.1/5.3/gcc/include/QtCore/qjsonobject.h \
+		../../Qt5.3.1/5.3/gcc/include/QtCore/QJsonArray \
+		../../Qt5.3.1/5.3/gcc/include/QtCore/qjsonarray.h \
+		../../Qt5.3.1/5.3/gcc/include/QtCore/QDebug \
+		../../Qt5.3.1/5.3/gcc/include/QtCore/qdebug.h \
+		../../Qt5.3.1/5.3/gcc/include/QtCore/qhash.h \
+		../../Qt5.3.1/5.3/gcc/include/QtCore/qmap.h \
+		../../Qt5.3.1/5.3/gcc/include/QtCore/qtextstream.h \
+		../../Qt5.3.1/5.3/gcc/include/QtCore/qlocale.h \
+		../../Qt5.3.1/5.3/gcc/include/QtCore/qvariant.h \
+		../../Qt5.3.1/5.3/gcc/include/QtCore/qshareddata.h \
+		../../Qt5.3.1/5.3/gcc/include/QtCore/qvector.h \
+		../../Qt5.3.1/5.3/gcc/include/QtCore/qpoint.h \
+		../../Qt5.3.1/5.3/gcc/include/QtCore/qset.h \
+		../../Qt5.3.1/5.3/gcc/include/QtCore/qcontiguouscache.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o baiduapidictresult.o baiduapidictresult.cpp
 
 qrc_qml.o: qrc_qml.cpp 

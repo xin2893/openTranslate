@@ -2,5 +2,6 @@
     <qresource prefix="/">
         <file>main.qml</file>
         <file>base/InputArea.qml</file>
+        <file>base/DisplayArea.qml</file>
     </qresource>
 </RCC>

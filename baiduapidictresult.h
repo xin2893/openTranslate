@@ -23,11 +23,14 @@ public:
     void bd_set_ph_en(QString en){ph_en = en;}
     void bd_set_part_num(qint64 n){part_num = n;}
     void bd_set_parts(QString s){parts << s;}
-    void bd_set_means_num(qint64 n){means_num << n;}
-    void bd_set_means(QStringList sl){means << sl;}
+    void bd_set_means_num(qint64 n, int j);
+    void bd_set_means(QStringList sl, int i);
 
+    void initBaiDuData(void);
     void parseBaiDuJsonData(QByteArray text);
     void readBaiDuJsonSymbolsArray(QJsonObject &obj);
+
+
 public slots:
     qint64 bd_get_errno(){ return errno;}
     QString bd_get_word_name(){return word_name;}
@@ -36,8 +39,15 @@ public slots:
     QString bd_get_ph_am(){return ph_am;}
     QString bd_get_ph_en(){return ph_en;}
     qint64 bd_get_part_num(){return part_num;}
+    QString bd_get_parts(qint64 i){
+        return parts[i];
+    }
+    QString bd_ddd(){return parts[0];}
+
     qint64 bd_get_means_num(qint64 pindex){return means_num[pindex];}
     QString bd_get_means(qint64 pindex, qint64 mindex){
+        //qDebug() << "pindex:" << pindex << " mindex:" << mindex;
+        //qDebug() << "size:" << means.size();
         return means[pindex][mindex];
     }
 private:

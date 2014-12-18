@@ -107,6 +107,7 @@ void Translate::httpReadyRead()
         //result = new BaiduAPIDictResult;
     }
     //setRootContextBaiDuAPI(result);
+    baidu->initBaiDuData();
     baidu->parseBaiDuJsonData(rawdata);
     //qDebug() << data;
     emit dataPostReady(data);
