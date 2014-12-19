@@ -25,6 +25,7 @@ Rectangle {
         selectByMouse: true
         autoScroll: false
         cursorVisible: false
+        focus: true
         //wrapMode: TextInput.Wrap
         //echoMode:
         maximumLength: 32
@@ -38,7 +39,7 @@ Rectangle {
             //input.border.color = "#e2e5ea"
         }
         onTextChanged: {
-            console.log("text: " + text)
+            //console.log("text: " + text)
         }
         onCursorVisibleChanged: {
             if(cursorVisible == true){

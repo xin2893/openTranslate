@@ -94,8 +94,8 @@ ApplicationWindow {
 
         DisplayArea{
             id: dispresult
-            width: input.width; height: 32;
-            x: input.x; y: line.y + 15;
+            width: root.width - 20; height: 32;
+            x: (root.width - width )/2; y: line.y + 15;
 
         }
 
