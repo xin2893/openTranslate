@@ -12,6 +12,135 @@ ApplicationWindow {
     title: qsTr("Hello World")
     color: "white"
 
+
+    Rectangle{
+        x:0;y:0;z:2; width: root.width;height: 40;
+        opacity: 0
+        MouseArea{
+            id:tm_mouse
+            hoverEnabled: true
+            anchors.fill: parent
+            onEntered: {
+                //console.log("d")
+                topmenu.state = "display";
+            }
+            onExited: {
+                //console.log("exit")
+                topmenu.state = "hidden";
+            }
+        }
+    }
+
+    Rectangle{
+        id:topmenu
+        x:0;y:-40;z:3;
+        width: root.width;height: 40;
+        color: "green";
+
+        Rectangle{
+            id: dictory
+            x:parent.width /2 - 80;
+            //y:10;
+            width: 40;height: parent.height ;
+            color: "green"
+            //opacity: 0.1
+            gradient:Gradient {
+                GradientStop { position: 0.0; color: "green" }
+                GradientStop { position: 1.0; color: "green" }
+            }
+
+            Text {
+                y:8;
+                font.pixelSize: topmenu.height / 2;
+                text: qsTr("词典")
+            }
+            MouseArea{
+                anchors.fill: parent;
+                onClicked: {
+
+
+                }
+                onPressed: {
+                    parent.gradient.stops[0].color = "white";
+                }
+
+                onReleased: {
+                    parent.gradient.stops[0].color = "green";
+                }
+            }
+        }
+        Rectangle{
+            id: transl
+            x:parent.width /2 + 80;
+            //y:10;
+            width: 40;height: parent.height;
+            color: "green"
+            //opacity: 0.1
+            gradient:Gradient {
+                GradientStop { position: 0.0; color: "green" }
+                GradientStop { position: 1.0; color: "green" }
+            }
+            Text {
+                y:8;
+                font.pixelSize: topmenu.height / 2;
+                text: qsTr("翻译")
+            }
+            MouseArea{
+                anchors.fill: parent;
+                onClicked: {
+
+
+                }
+                onPressed: {
+                    parent.gradient.stops[0].color = "white";
+                }
+
+                onReleased: {
+                    parent.gradient.stops[0].color = "green";
+                }
+            }
+        }
+
+        states: [
+            State {
+                name: "display"; //when: tm_mouse.pressed
+                PropertyChanges { target: topmenu; x: 0; y: 0 }
+            },
+            State {
+                name: "hidden";
+                PropertyChanges { target: topmenu; x: 0; y: -40 }
+            }
+        ]
+        transitions: [
+            Transition {
+                NumberAnimation { properties: "x,y"; easing.type: Easing.InOutQuad }
+                from: "display"; to: "hidden"
+
+            },
+            Transition {
+                from: "hidden"
+                to: "display"
+                NumberAnimation { properties: "x,y"; easing.type: Easing.InOutQuad }
+            }
+        ]
+    }
+
+    Rectangle{
+        id: mpos
+        x:0;y:0;z:1;width: root.width;height: root.height;
+        MouseArea{
+            id:d
+            anchors.fill: parent;
+            hoverEnabled: true
+
+            onClicked: {
+                console.log("click")
+                //topmenu.flag = 1;
+
+            }
+
+        }
+    }
     menuBar: MenuBar {
         Menu {
             title: qsTr("File")
