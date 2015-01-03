@@ -471,6 +471,7 @@ compiler_rcc_clean:
 	-$(DEL_FILE) qrc_qml.cpp
 qrc_qml.cpp: qml.qrc \
 		main.qml \
+		base/TextEditArea.qml \
 		base/DisplayArea.qml \
 		base/InputArea.qml
 	/home/stephen/Qt5.3.1/5.3/gcc/bin/rcc -name qml qml.qrc -o qrc_qml.cpp

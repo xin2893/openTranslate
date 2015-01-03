@@ -21,6 +21,14 @@ void Translate::dictSendWord(QString word, QString from, QString to)
 
 }
 
+void Translate::transSendParagraph(QString word, QString from, QString to)
+{
+    QString surl(tr("http://openapi.baidu.com/public/2.0/bmt/translate?client_id=%1&q=%2&from=%3&to=%4")\
+                 .arg(OT_BAIDU_API_KEY).arg(word).arg("auto").arg("auto"));
+    qDebug() << surl;
+    startRequest(QUrl(surl));
+}
+
 
 void Translate::startRequest(QUrl url)
 {
@@ -108,7 +116,10 @@ void Translate::httpReadyRead()
     }
     //setRootContextBaiDuAPI(result);
     baidu->initBaiDuData();
-    baidu->parseBaiDuJsonData(rawdata);
+    if(!checkTrFlag())
+        baidu->parseBaiDuJsonData(rawdata);
+    else
+        baidu->parseBaiDuTranJsonData(rawdata);
     //qDebug() << data;
     emit dataPostReady(data);
 }
