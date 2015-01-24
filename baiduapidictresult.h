@@ -32,7 +32,7 @@ public:
 
 
 public slots:
-    qint64 bd_get_errno(){ return errno;}
+    qint64 bd_get_errno(){ return errn;}
     QString bd_get_word_name(){return word_name;}
     QString bd_get_from(){return from;}
     QString bd_get_to(){return to;}
@@ -51,7 +51,7 @@ public slots:
         return means[pindex][mindex];
     }
 private:
-    qint64  errno;
+    qint64  errn;
     QString from;
     QString to;
     QString word_name;

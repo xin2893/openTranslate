@@ -124,7 +124,7 @@ void BaiduAPIDictResult::initBaiDuData(void)
     for(int i = 0; i < means_num.size(); i++)
         means_num.removeAt(i);
     parts.clear();
-    errno = 0;
+    errn = 0;
     from.clear();
     to.clear();
     word_name.clear();
