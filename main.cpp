@@ -15,7 +15,7 @@
 int main(int argc, char *argv[])
 {
     QApplication app(argc, argv);
-
+#if  1
     qmlRegisterType<Translate>("Translate", 1, 0, "Translate");
     qmlRegisterType<BaiduAPIDictResult>("BaiduAPIDictResult", 1, 0, "BaiduAPIDictResult");
     QQmlEngine engine;
@@ -25,6 +25,16 @@ int main(int argc, char *argv[])
     //engine.load(QUrl(QStringLiteral("qrc:///main.qml")));
     QQmlComponent component(&engine, QUrl::fromLocalFile("main.qml"));
     component.create();
-
+#endif
     return app.exec();
+
+
+
 }
+
+
+
+
+
+
+

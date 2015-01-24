@@ -9,14 +9,26 @@ ApplicationWindow {
     visible: true
     width: 640
     height: 480
-    title: qsTr("Hello World")
+    title: qsTr("openTranslate")
     color: "white"
+/*
+    menuBar: MenuBar {
 
+        Menu {
+            title: qsTr("File")
 
+            MenuItem {
+                text: qsTr("Exit")
+                onTriggered: Qt.quit();
+            }
+        }
+    }
+*/
     //menu
     Rectangle{
         x:0;y:0;z:102; width: root.width;height: 40;
         opacity: 0
+        visible: true
         MouseArea{
             id:tm_mouse
             hoverEnabled: true
@@ -130,15 +142,7 @@ ApplicationWindow {
     }
 
 
-    menuBar: MenuBar {
-        Menu {
-            title: qsTr("File")
-            MenuItem {
-                text: qsTr("Exit")
-                onTriggered: Qt.quit();
-            }
-        }
-    }
+
 
     //dictory
     Rectangle {
