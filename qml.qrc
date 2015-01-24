@@ -3,5 +3,6 @@
         <file>main.qml</file>
         <file>base/InputArea.qml</file>
         <file>base/DisplayArea.qml</file>
+        <file>base/TextEditArea.qml</file>
     </qresource>
 </RCC>

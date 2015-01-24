@@ -46,6 +46,8 @@ void BaiduAPIDictResult::readBaiDuJsonSymbolsArray(QJsonObject &obj)
     //qDebug() << "means[0][0]" << bd_get_means(0,0);
 }
 
+
+//dictory data parse
 void BaiduAPIDictResult::parseBaiDuJsonData(QByteArray text)
 {
     qDebug() << "ddd:" << text;
@@ -106,6 +108,80 @@ void BaiduAPIDictResult::parseBaiDuJsonData(QByteArray text)
 
 }
 
+
+//translate array parse
+void BaiduAPIDictResult::readBaiDuTrJsonArray(QJsonArray &arr)
+{
+    trans_num = arr.size();
+    for(int i = 0; i < arr.size(); i++){
+        QJsonObject obj = arr[i].toObject();
+        if(obj.contains("src")){
+            bd_set_src(obj["src"].toString(), i);
+            qDebug() << get_trans_src(i);
+        }
+        if(obj.contains("dst")){
+            bd_set_dst(obj["dst"].toString(),i);
+            qDebug() << get_trans_dst(i);
+        }
+    }
+    //qDebug() << "means[0][0]" << bd_get_means(0,0);
+}
+
+//translate data parse
+void BaiduAPIDictResult::parseBaiDuTranJsonData(QByteArray text)
+{
+    qDebug() << "ddd:" << text;
+    QJsonParseError perr;
+    QJsonDocument doc = QJsonDocument::fromJson(text, &perr);
+    if(perr.error == QJsonParseError::NoError){
+        qDebug() << "noerror";
+    }else{
+        qDebug() << perr.errorString();
+    }
+    //QJsonArray json = doc.array();
+    if(doc.isObject()){
+        qDebug() << "doc is obj";
+        QJsonObject js = doc.object();
+        if(js.contains("errno")){
+            //result.errno = js.take("errno").toInt();
+            bd_set_errno(js["errno"].toInt());
+            err_msg = js["error_msg"].toString();
+            qDebug() << "result.errno:" << bd_get_errno() << " msg: " << err_msg;
+        }
+
+        if(js.contains("from")){
+            //qDebug() << "contains from";
+            QJsonValue value = js.take("from");
+            if(value.isString()){
+                bd_set_from(value.toString());
+                qDebug() << value.toString();
+            }
+        }
+        if(js.contains("to")){
+            bd_set_to(js["to"].toString());
+            qDebug() << js["to"].toString();
+        }
+
+        if(js.contains("trans_result")){
+            qDebug() << "trans_result";
+            QJsonArray res = js["trans_result"].toArray();
+            readBaiDuTrJsonArray(res);
+        }
+    }
+    if(doc.isNull()){
+        qDebug() << "doc is null";
+    }
+    if(doc.isEmpty()){
+        qDebug() << "doc is empty";
+    }
+    if(doc.isArray()){
+        qDebug() << "doc is array";
+
+    }
+
+}
+
+
 void BaiduAPIDictResult::initBaiDuData(void)
 {
     //QList<QStringList>::iterator end = means.end();
@@ -123,6 +199,11 @@ void BaiduAPIDictResult::initBaiDuData(void)
     }
     for(int i = 0; i < means_num.size(); i++)
         means_num.removeAt(i);
+    for(int i =0;i< src.size();i++)
+    {
+        src.removeAt(i);
+        dst.removeAt(i);
+    }
     parts.clear();
     errn = 0;
     from.clear();
@@ -131,6 +212,7 @@ void BaiduAPIDictResult::initBaiDuData(void)
     ph_am.clear();
     ph_en.clear();
     part_num = 0;
+    trans_num = 0;
 }
 
 void BaiduAPIDictResult::bd_set_means_num(qint64 n, int j)
@@ -152,5 +234,49 @@ void BaiduAPIDictResult::bd_set_means(QStringList sl, int i)
         means.replace(i, sl);
     }
 }
+
+
+void BaiduAPIDictResult::bd_set_src(QString s, qint64 i)
+{
+    qDebug() << "length:" << src.length() << " i:" << i;
+    if(src.isEmpty() || (src.length() <= i))
+        src << s;
+    else{
+        qDebug() << "replace";
+        src.replace(i, s);
+    }
+}
+
+
+void BaiduAPIDictResult::bd_set_dst(QString s, qint64 i)
+{
+    qDebug() << "length:" << dst.length() << " i:" << i;
+    if(dst.isEmpty() || (dst.length() <= i))
+        dst << s;
+    else{
+        qDebug() << "replace";
+        dst.replace(i, s);
+
+    }
+}
+
+//trans
+qint64 BaiduAPIDictResult::get_trans_num(void)
+{
+    return trans_num;
+}
+QString BaiduAPIDictResult::get_trans_src(qint64 i)
+{
+    if(src.isEmpty())
+        return NULL;
+    return src[i];
+}
+QString BaiduAPIDictResult::get_trans_dst(qint64 i)
+{
+    if(dst.isEmpty())
+        return NULL;
+    return dst[i];
+}
+
 
 

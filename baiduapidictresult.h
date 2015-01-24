@@ -26,10 +26,16 @@ public:
     void bd_set_means_num(qint64 n, int j);
     void bd_set_means(QStringList sl, int i);
 
+    void bd_set_src(QString s, qint64 i);
+    void bd_set_dst(QString s, qint64 i);
+    void bd_set_trans_num(qint64 num){trans_num = num;}
+
     void initBaiDuData(void);
     void parseBaiDuJsonData(QByteArray text);
     void readBaiDuJsonSymbolsArray(QJsonObject &obj);
 
+    void parseBaiDuTranJsonData(QByteArray text);
+    void readBaiDuTrJsonArray(QJsonArray &arr);
 
 public slots:
     qint64 bd_get_errno(){ return errn;}
@@ -50,8 +56,16 @@ public slots:
         //qDebug() << "size:" << means.size();
         return means[pindex][mindex];
     }
+
+    //trans
+    qint64 get_trans_num(void);
+    QString get_trans_src(qint64 i);
+    QString get_trans_dst(qint64 i);
+
 private:
     qint64  errn;
+    //qint64  errno;
+    QString err_msg;
     QString from;
     QString to;
     QString word_name;
@@ -61,6 +75,10 @@ private:
     QStringList parts;
     QList<qint64> means_num;
     QList<QStringList> means;
+
+    qint64 trans_num;
+    QStringList src;
+    QStringList dst;
 };
 
 #endif // BAIDUAPIDICTRESULT_H
